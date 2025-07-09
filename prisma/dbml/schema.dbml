@@ -15,8 +15,8 @@ Table Projeto {
   id_projeto String [pk]
   nome_projeto String [not null]
   valor_venda Float [not null]
-  data_inicio DateTime [not null]
-  data_fim DateTime [not null]
+  data_inicio String [not null]
+  data_fim String [not null]
   houve_discovery Boolean [not null]
   ha_prototipo Boolean [not null]
   nome_cliente String [not null]
@@ -27,10 +27,10 @@ Table Gerente {
   login_gerente String [pk]
   nome_gerente String [not null]
   curso String [not null]
-  data_nascimento DateTime [not null]
+  data_nascimento String [not null]
   periodo String [not null]
-  data_entrada DateTime [not null]
-  data_ondas DateTime [not null]
+  data_entrada String [not null]
+  data_ondas String [not null]
   squad Squad
 }
 
@@ -38,9 +38,9 @@ Table Desenvolvedor {
   login_dev String [pk]
   nome_dev String [not null]
   curso String [not null]
-  data_nascimento DateTime [not null]
+  data_nascimento String [not null]
   periodo String [not null]
-  data_entrada DateTime [not null]
+  data_entrada String [not null]
   id_squad_dev String [not null]
   squad Squad [not null]
 }

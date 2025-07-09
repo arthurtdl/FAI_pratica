@@ -29,8 +29,8 @@ model Projeto {
   id_projeto          String @id @default(uuid())
   nome_projeto        String
   valor_venda         Float
-  data_inicio         DateTime
-  data_fim            DateTime
+  data_inicio         String
+  data_fim            String
   houve_discovery     Boolean
   ha_prototipo        Boolean
   nome_cliente        String
@@ -42,10 +42,10 @@ model Gerente {
   login_gerente       String @id @default(uuid())
   nome_gerente        String
   curso               String
-  data_nascimento     DateTime
+  data_nascimento     String
   periodo             String
-  data_entrada        DateTime
-  data_ondas          DateTime
+  data_entrada        String
+  data_ondas          String
 
   squad               Squad?
 }
@@ -54,9 +54,9 @@ model Desenvolvedor {
   login_dev           String @id @default(uuid())
   nome_dev            String
   curso               String
-  data_nascimento     DateTime
+  data_nascimento     String
   periodo             String
-  data_entrada        DateTime
+  data_entrada        String
 
   id_squad_dev        String
 
