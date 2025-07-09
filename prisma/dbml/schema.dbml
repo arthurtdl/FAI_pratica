@@ -2,10 +2,51 @@
 //// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 //// ------------------------------------------------------
 
-Table User {
-  id String [pk]
-  name String [not null]
-  phone String
-  email String [unique, not null]
-  password String [not null]
+Table Squad {
+  id_squad String [pk]
+  login_gerente_squad String [unique, not null]
+  id_projeto_squad String [unique, not null]
+  desenvolvedores Desenvolvedor [not null]
+  gerente Gerente [not null]
+  projeto Projeto [not null]
 }
+
+Table Projeto {
+  id_projeto String [pk]
+  nome_projeto String [not null]
+  valor_venda Float [not null]
+  data_inicio DateTime [not null]
+  data_fim DateTime [not null]
+  houve_discovery Boolean [not null]
+  ha_prototipo Boolean [not null]
+  nome_cliente String [not null]
+  squad Squad
+}
+
+Table Gerente {
+  login_gerente String [pk]
+  nome_gerente String [not null]
+  curso String [not null]
+  data_nascimento DateTime [not null]
+  periodo String [not null]
+  data_entrada DateTime [not null]
+  data_ondas DateTime [not null]
+  squad Squad
+}
+
+Table Desenvolvedor {
+  login_dev String [pk]
+  nome_dev String [not null]
+  curso String [not null]
+  data_nascimento DateTime [not null]
+  periodo String [not null]
+  data_entrada DateTime [not null]
+  id_squad_dev String [not null]
+  squad Squad [not null]
+}
+
+Ref: Squad.login_gerente_squad - Gerente.login_gerente
+
+Ref: Squad.id_projeto_squad - Projeto.id_projeto
+
+Ref: Desenvolvedor.id_squad_dev > Squad.id_squad
