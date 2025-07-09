@@ -12,10 +12,53 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
-model User {
-  id       String  @id @default(uuid())
-  name     String
-  phone    String?
-  email    String  @unique
-  password String
+model Squad {
+  id_squad            String  @id @default(uuid())
+
+  login_gerente_squad String @unique // Relacionando o login_gerente no squad
+  id_projeto_squad    String @unique // Relacionando o id_projeto no squad
+
+  desenvolvedores   Desenvolvedor[]
+
+  gerente             Gerente @relation(fields: [login_gerente_squad], references: [login_gerente])
+  projeto             Projeto @relation(fields: [id_projeto_squad], references: [id_projeto])
+  
+}
+
+model Projeto {
+  id_projeto          String @id @default(uuid())
+  nome_projeto        String
+  valor_venda         Float
+  data_inicio         DateTime
+  data_fim            DateTime
+  houve_discovery     Boolean
+  ha_prototipo        Boolean
+  nome_cliente        String
+
+  squad               Squad?
+}
+
+model Gerente {
+  login_gerente       String @id @default(uuid())
+  nome_gerente        String
+  curso               String
+  data_nascimento     DateTime
+  periodo             String
+  data_entrada        DateTime
+  data_ondas          DateTime
+
+  squad               Squad?
+}
+
+model Desenvolvedor {
+  login_dev           String @id @default(uuid())
+  nome_dev            String
+  curso               String
+  data_nascimento     DateTime
+  periodo             String
+  data_entrada        DateTime
+
+  id_squad_dev        String
+
+  squad               Squad @relation(fields: [id_squad_dev], references: [id_squad])
 }
