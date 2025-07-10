@@ -19,6 +19,10 @@ class ProjetoRepository {
         return projetos;
     }
 
+    async findByName(nome_projeto: string) {
+    return prisma.projeto.findUnique({ where: { nome_projeto } });
+    }
+
     async update(id_projeto: string, data: Prisma.ProjetoUpdateInput) {
         const projeto = await prisma.projeto.update({
             where: { id_projeto }, data

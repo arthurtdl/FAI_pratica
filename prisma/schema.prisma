@@ -27,7 +27,7 @@ model Squad {
 
 model Projeto {
   id_projeto          String @id @default(uuid())
-  nome_projeto        String
+  nome_projeto        String @unique
   valor_venda         Float
   data_inicio         String
   data_fim            String

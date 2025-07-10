@@ -5,8 +5,7 @@ export const createProjetoSchema = z.object({
     .string({
       invalid_type_error: 'O nome_projeto deve ser uma string',
       required_error: 'O nome_projeto é obrigatório',
-    })
-    .regex(/^[a-zA-Z\s]+$/, { message: 'O nome_projeto deve conter apenas letras' }),
+    }),
 
     valor_venda: z
     .number({

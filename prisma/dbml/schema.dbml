@@ -13,7 +13,7 @@ Table Squad {
 
 Table Projeto {
   id_projeto String [pk]
-  nome_projeto String [not null]
+  nome_projeto String [unique, not null]
   valor_venda Float [not null]
   data_inicio String [not null]
   data_fim String [not null]
