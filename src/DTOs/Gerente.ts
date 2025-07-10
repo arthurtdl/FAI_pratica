@@ -1,19 +1,24 @@
 import z from "zod";
 
 export const createGerenteSchema = z.object({
+    login_gerente: z
+    .string({
+      invalid_type_error: 'O login_gerente deve ser uma string',
+      required_error: 'O login_gerente é obrigatório',
+    })
+    .uuid({ message: 'O login_gerente deve ser um UUID válido' }),
+
     nome_gerente: z.
     string({
         invalid_type_error: 'O nome_gerente deve ser uma string',
         required_error: 'O nome_gerente é obrigatório',
-    })
-    .regex(/^[a-zA-Z\s]+$/, { message: 'O nome_gerente deve conter apenas letras' }),
+    }),
     
     curso: z.
     string({
         invalid_type_error: 'O curso deve ser uma string',
         required_error: 'O curso é obrigatório',
-    })
-    .regex(/^[a-zA-Z\s]+$/, { message: 'O curso deve conter apenas letras' }),
+    }),
 
     data_nascimento: z.
     string({
