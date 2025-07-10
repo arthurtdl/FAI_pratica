@@ -1,8 +1,10 @@
-import { Router } from "express";
-import SquadController from "src/controllers/SquadController";
+import { Router } from 'express';
+import { SquadController } from '../controllers';
 
-const router = Router();
+const squadRouter = Router();
 
-router.post("/", SquadController.create);
+squadRouter
+  .route('/')
+  .post(SquadController.create);
 
-export default router
+export default squadRouter;

@@ -1,8 +1,10 @@
-import { Router } from "express";
-import GerenteController from "src/controllers/GerenteController";
+import { Router } from 'express';
+import { GerenteController } from '../controllers';
 
-const router = Router();
+const gerenteRouter = Router();
 
-router.post("/", GerenteController.create);
+gerenteRouter
+  .route('/')
+  .post(GerenteController.create);
 
-export default router
+export default gerenteRouter;

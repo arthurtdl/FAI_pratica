@@ -1,8 +1,10 @@
-import { Router } from "express";
-import DesenvolvedorController from "src/controllers/DesenvolvedorController";
+import { Router } from 'express';
+import { DesenvolvedorController } from '../controllers';
 
-const router = Router();
+const desenvolvedorRouter = Router();
 
-router.post("/", DesenvolvedorController.create);
+desenvolvedorRouter
+  .route('/')
+  .post(DesenvolvedorController.create);
 
-export default router
+export default desenvolvedorRouter;
