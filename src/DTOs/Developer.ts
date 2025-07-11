@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const createDeveloperSchema = z.object({
-    email: z
+        email: z
         .string({
           invalid_type_error: 'O email deve ser uma string',
           required_error: 'O email é obrigatório',
@@ -41,6 +41,12 @@ export const createDeveloperSchema = z.object({
         string({
             invalid_type_error: 'A entryDate deve ser uma string',
             required_error: 'A entryDate é obrigatória',
+        }),
+
+        squadId: z.
+        number({
+            invalid_type_error: 'O squadId deve ser um inteiro',
+            required_error: 'O squadId é obrigatório',
         })
 });
 

@@ -14,6 +14,13 @@ class DeveloperRepository {
         return dev;
     }
 
+    async findByEmail(email: string): Promise<Developer | null> {
+        const dev = await prisma.developer.findUnique({
+            where: { email },
+        });
+        return dev;
+    }
+
     async findAll(): Promise<Developer[]> {
         const devs = await prisma.developer.findMany();
         return devs;

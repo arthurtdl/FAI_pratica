@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const createProjectSchema = z.object({
     name: z
-    .number({
+    .string({
       invalid_type_error: 'O name deve ser uma string',
       required_error: 'O name é obrigatório',
     }),

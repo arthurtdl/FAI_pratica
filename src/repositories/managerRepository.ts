@@ -14,6 +14,13 @@ class ManagerRepository {
         return gerente;
     }
 
+    async findByEmail(email: string): Promise<Manager | null> {
+        const gerente = await prisma.manager.findUnique({
+            where: { email },
+        });
+        return gerente;
+    }
+
     async findAll(): Promise<Manager[]> {
         const gerentes = await prisma.manager.findMany();
         return gerentes;

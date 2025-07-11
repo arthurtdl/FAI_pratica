@@ -1,27 +1,27 @@
 import { Request, Response, NextFunction } from 'express';
-import { createGerenteSchema } from '@DTOs';
-import { gerenteRepository } from '@repositories';
+import { createManagerSchema } from '@DTOs';
+import { ManagerRepository } from '@repositories';
 
-class GerenteController {
+class ManagerController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
-            const gerenteData = createGerenteSchema.parse(req.body);
+            const managerData = createManagerSchema.parse(req.body);
 
-            const existing  = await gerenteRepository.findByLogin(gerenteData.login_gerente);
+            const existing  = await ManagerRepository.findByEmail(managerData.email);
             if (existing) {
 
                 return next({
                     status: 409,
-                    message: 'Já existe um gerente com esse login'
+                    message: 'Já existe um gerente com esse email'
                 });
             }
 
-            const gerente = await gerenteRepository.create(gerenteData)
+            const manager = await ManagerRepository.create(managerData)
 
             res.locals = {
                 status: 201,
                 message: "Gerente adicionado com sucesso!",
-                data: gerente
+                data: manager
             };
 
             return next();
@@ -33,4 +33,4 @@ class GerenteController {
 
 }
 
-export default new GerenteController();
+export default new ManagerController();

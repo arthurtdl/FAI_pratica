@@ -8,32 +8,32 @@ class SquadController {
         try {
             const squadData = createSquadSchema.parse(req.body);
 
-            const gerenteInUse = await SquadRepository.findByGerente(squadData.login_gerente_squad);
-            if (gerenteInUse) {
+            const managerInUse = await SquadRepository.findByManager(squadData.managerId);
+            if (managerInUse) {
 
                 return next({
                     status: 409,
-                    message: "Este gerente já está alocado em uma squad."
+                    message: "Este manager já está alocado em uma squad."
                 });
             }
 
-            const projetoInUse = await SquadRepository.findByProjeto(squadData.id_projeto_squad);
-            if (projetoInUse) {
+            const projectInUse = await SquadRepository.findByProject(squadData.projectId);
+            if (projectInUse) {
                 return next({
                     status: 409,
-                    message: "Este projeto já pertence a uma squad."
+                    message: "Este project já pertence a uma squad."
                 });
             }
 
             const dataForPrisma: Prisma.SquadCreateInput = {
-                gerente: {
+                manager: {
                     connect: {
-                        login_gerente: squadData.login_gerente_squad
+                        id: squadData.managerId
                     }
                 },
-                projeto: {
+                project: {
                     connect: {
-                        id_projeto: squadData.id_projeto_squad
+                        id: squadData.projectId
                     }
                 }
             };
