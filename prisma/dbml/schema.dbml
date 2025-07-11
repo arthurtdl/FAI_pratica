@@ -3,50 +3,54 @@
 //// ------------------------------------------------------
 
 Table Squad {
-  id_squad String [pk]
-  login_gerente_squad String [unique, not null]
-  id_projeto_squad String [unique, not null]
-  desenvolvedores Desenvolvedor [not null]
-  gerente Gerente [not null]
-  projeto Projeto [not null]
+  id Int [pk, increment]
+  managerId Int [unique, not null]
+  projectId Int [unique, not null]
+  developers Developer [not null]
+  manager Manager [not null]
+  project Project [not null]
 }
 
-Table Projeto {
-  id_projeto String [pk]
-  nome_projeto String [unique, not null]
-  valor_venda Float [not null]
-  data_inicio String [not null]
-  data_fim String [not null]
-  houve_discovery Boolean [not null]
-  ha_prototipo Boolean [not null]
-  nome_cliente String [not null]
+Table Project {
+  id Int [pk, increment]
+  name String [unique, not null]
+  saleValue Float [not null]
+  startDate DateTime [not null]
+  endDate DateTime [not null]
+  hadDiscovery Boolean [not null]
+  havePrototype Boolean [not null]
+  clientName String [not null]
   squad Squad
 }
 
-Table Gerente {
-  login_gerente String [pk]
-  nome_gerente String [not null]
-  curso String [not null]
-  data_nascimento String [not null]
-  periodo String [not null]
-  data_entrada String [not null]
-  data_ondas String [not null]
+Table Manager {
+  id Int [pk, increment]
+  email String [unique, not null]
+  password String [not null]
+  name String [not null]
+  course String [not null]
+  birthDate DateTime [not null]
+  semester String [not null]
+  entryDate DateTime [not null]
+  leadershipEntry DateTime [not null]
   squad Squad
 }
 
-Table Desenvolvedor {
-  login_dev String [pk]
-  nome_dev String [not null]
-  curso String [not null]
-  data_nascimento String [not null]
-  periodo String [not null]
-  data_entrada String [not null]
-  id_squad_dev String [not null]
+Table Developer {
+  id Int [pk, increment]
+  email String [unique, not null]
+  password String [not null]
+  name String [not null]
+  course String [not null]
+  birthDate DateTime [not null]
+  semester String [not null]
+  entryDate DateTime [not null]
+  squadId Int [not null]
   squad Squad [not null]
 }
 
-Ref: Squad.login_gerente_squad - Gerente.login_gerente
+Ref: Squad.managerId - Manager.id
 
-Ref: Squad.id_projeto_squad - Projeto.id_projeto
+Ref: Squad.projectId - Project.id
 
-Ref: Desenvolvedor.id_squad_dev > Squad.id_squad
+Ref: Developer.squadId > Squad.id

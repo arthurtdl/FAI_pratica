@@ -13,52 +13,57 @@ generator dbml {
 }
 
 model Squad {
-  id_squad            String  @id @default(uuid())
+  id                  Int  @id @default(autoincrement())
 
-  login_gerente_squad String @unique // Relacionando o login_gerente no squad
-  id_projeto_squad    String @unique // Relacionando o id_projeto no squad
+  managerId          Int @unique // Relacionando o managerId no squad
+  projectId          Int @unique // Relacionando o projectId no squad
 
-  desenvolvedores   Desenvolvedor[]
+  developers         Developer[]
 
-  gerente             Gerente @relation(fields: [login_gerente_squad], references: [login_gerente])
-  projeto             Projeto @relation(fields: [id_projeto_squad], references: [id_projeto])
+  manager            Manager @relation(fields: [managerId], references: [id])
+  project            Project @relation(fields: [projectId], references: [id])
   
 }
 
-model Projeto {
-  id_projeto          String @id @default(uuid())
-  nome_projeto        String @unique
-  valor_venda         Float
-  data_inicio         String
-  data_fim            String
-  houve_discovery     Boolean
-  ha_prototipo        Boolean
-  nome_cliente        String
+model Project {
+  id                  Int @id @default(autoincrement())
+  name                String @unique
+  saleValue           Float
+  startDate           DateTime
+  endDate             DateTime
+  hadDiscovery        Boolean
+  havePrototype       Boolean
+  clientName          String
 
   squad               Squad?
 }
 
-model Gerente {
-  login_gerente       String @id @default(uuid())
-  nome_gerente        String
-  curso               String
-  data_nascimento     String
-  periodo             String
-  data_entrada        String
-  data_ondas          String
+model Manager {
+  id                  Int @id @default(autoincrement())
+  email               String @unique
+  password            String
+  name                String
+  course              String
+  birthDate           DateTime
+  semester            String
+  entryDate           DateTime
+  leadershipEntry     DateTime
 
   squad               Squad?
 }
 
-model Desenvolvedor {
-  login_dev           String @id @default(uuid())
-  nome_dev            String
-  curso               String
-  data_nascimento     String
-  periodo             String
-  data_entrada        String
+model Developer {
 
-  id_squad_dev        String
+  id                  Int @id @default(autoincrement())
+  email               String @unique
+  password            String
+  name                String
+  course              String
+  birthDate           DateTime
+  semester            String
+  entryDate           DateTime
 
-  squad               Squad @relation(fields: [id_squad_dev], references: [id_squad])
+  squadId            Int
+
+  squad               Squad @relation(fields: [squadId], references: [id])
 }

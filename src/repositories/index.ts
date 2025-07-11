@@ -3,8 +3,8 @@ import TokenRepository from './tokenRepository';
 import CookieRepository from './cookieRepository';
 import FileRepository from './fileRepository';
 import SquadRepository from './squadRepository';
-import projetoRepository from './projetoRepository';
-import gerenteRepository from './gerenteRepository';
-import desenvolvedorRepository from './desenvolvedorRepository';
+import ProjectRepository from './projectRepository';
+import ManagerRepository from './managerRepository';
+import DeveloperRepository from './developerRepository';
 
-export { UserRepository, TokenRepository, CookieRepository, FileRepository, SquadRepository, projetoRepository, gerenteRepository, desenvolvedorRepository };
+export { UserRepository, TokenRepository, CookieRepository, FileRepository, SquadRepository, ProjectRepository, ManagerRepository, DeveloperRepository };
