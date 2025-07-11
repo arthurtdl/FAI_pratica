@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { DesenvolvedorController } from '../controllers';
+import { DeveloperController } from '../controllers';
 
 const desenvolvedorRouter = Router();
 
 desenvolvedorRouter
   .route('/')
-  .post(DesenvolvedorController.create);
+  .post(DeveloperController.create);
 
 export default desenvolvedorRouter;

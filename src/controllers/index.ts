@@ -1,9 +1,6 @@
-import UserController from './UserController';
-import LoginController from './LoginController';
-import FileController from './fileController';
 import SquadController from './SquadController';
-import ProjetoController from './ProjectController';
-import GerenteController from './ManagerController';
-import DesenvolvedorController from './DeveloperController';
+import ProjectController from './ProjectController';
+import ManagerController from './ManagerController';
+import DeveloperController from './DeveloperController';
 
-export { UserController, LoginController, FileController, SquadController, ProjetoController, GerenteController, DesenvolvedorController };
+export { SquadController, ProjectController, ManagerController, DeveloperController };

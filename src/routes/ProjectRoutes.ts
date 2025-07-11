@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { ProjetoController } from '../controllers';
+import { ProjectController } from '../controllers';
 
 const projetoRouter = Router();
 
 projetoRouter
   .route('/')
-  .post(ProjetoController.create);
+  .post(ProjectController.create);
 
 export default projetoRouter;
