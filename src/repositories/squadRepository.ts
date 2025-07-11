@@ -14,7 +14,7 @@ class SquadRepository {
     return squad;
   }
 
-  async findByProjeto(projectId: number): Promise<Squad | null> {
+  async findByProject(projectId: number): Promise<Squad | null> {
     const squad = await prisma.squad.findUnique({
       where: { projectId },
     });

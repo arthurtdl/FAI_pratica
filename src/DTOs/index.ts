@@ -1,8 +1,8 @@
 import { User, UpdateUser } from './User';
 import { createSquadSchema, updateSquadSchema } from './Squad';
-import { createProjetoSchema, updateProjetoSchema } from './Projeto';
-import { createGerenteSchema, updateGerenteSchema } from './Gerente';
-import { createDesenvolvedorSchema, updateDesenvolvedorSchema } from './Desenvolvedor';
+import { createProjetoSchema, updateProjetoSchema } from './Project';
+import { createGerenteSchema, updateGerenteSchema } from './Manager';
+import { createDesenvolvedorSchema, updateDesenvolvedorSchema } from './Developer';
 
 export { 
     User, UpdateUser,
