@@ -1,16 +1,16 @@
 // src/routes/index.ts
 import { Router } from 'express';
 import squadRouter from './SquadRoutes';
-import projetoRouter from './ProjectRoutes';
-import gerenteRouter from './ManagerRoutes';
-import desenvolvedorRouter from './DeveloperRoutes';
+import projectRouter from './ProjectRoutes';
+import managerRouter from './ManagerRoutes';
+import developerRouter from './DeveloperRoutes';
 
 const router = Router();
 
 router.use('/squads', squadRouter);
-router.use('/projetos', projetoRouter);
-router.use('/gerentes', gerenteRouter);
-router.use('/desenvolvedores', desenvolvedorRouter);
+router.use('/projects', projectRouter);
+router.use('/managers', managerRouter);
+router.use('/developers', developerRouter);
 
 router.route('/').get((_, res) => {
   res.status(200).send('Made with 💚 by CITi');
