@@ -7,10 +7,10 @@ import developerRouter from './DeveloperRoutes';
 
 const router = Router();
 
-router.use('/squads', squadRouter);
-router.use('/projects', projectRouter);
-router.use('/managers', managerRouter);
-router.use('/developers', developerRouter);
+router.use('/squad', squadRouter);
+router.use('/project', projectRouter);
+router.use('/manager', managerRouter);
+router.use('/developer', developerRouter);
 
 router.route('/').get((_, res) => {
   res.status(200).send('Made with 💚 by CITi');

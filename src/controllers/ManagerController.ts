@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { createManagerSchema } from '@DTOs';
+import { createManagerSchema, updateManagerSchema } from '@DTOs';
 import { ManagerRepository } from '@repositories';
 
 class ManagerController {
@@ -26,6 +26,57 @@ class ManagerController {
 
             return next();
 
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async readAll(_req: Request, res: Response, next: NextFunction) {
+            try {
+                const allManagers = await ManagerRepository.findAll();
+    
+                res.locals = {
+                    status: 200,
+                    data: allManagers,
+                };
+    
+                return next();
+            } catch (error) {
+                return next(error);
+            }
+    }
+
+    async update(req: Request, res: Response, next: NextFunction) {
+        try {
+            const managerId = parseInt(req.params.managerId, 10);
+            const managerData = updateManagerSchema.parse(req.body);
+
+            const manager = await ManagerRepository.update(managerId, managerData);
+
+            res.locals = {
+                status: 200,
+                message: 'Gerente updated',
+                data: manager
+            };
+
+            return next();
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            const managerId = parseInt(req.params.managerId, 10);
+
+            await ManagerRepository.delete(managerId);
+
+            res.locals = {
+                status: 200,
+                message: 'Gerente deleted',
+            };
+
+            return next();
         } catch (error) {
             return next(error);
         }

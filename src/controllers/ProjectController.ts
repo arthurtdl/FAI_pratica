@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { createProjectSchema } from '@DTOs';
+import { createProjectSchema, updateProjectSchema } from '@DTOs';
 import { ProjectRepository } from '@repositories';
 
 class ProjectController {
@@ -26,6 +26,57 @@ class ProjectController {
 
             return next();
 
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async readAll(_req: Request, res: Response, next: NextFunction) {
+        try {
+            const allProjects = await ProjectRepository.findAll();
+
+            res.locals = {
+                status: 200,
+                data: allProjects,
+            };
+
+            return next();
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async update(req: Request, res: Response, next: NextFunction) {
+        try {
+            const projectId = parseInt(req.params.projectId, 10);
+            const projectData = updateProjectSchema.parse(req.body);
+
+            const project = await ProjectRepository.update(projectId, projectData);
+
+            res.locals = {
+                status: 200,
+                data: project,
+                message: 'Project updated',
+            };
+
+            return next();
+        } catch (error) {
+            return next(error);
+        }
+    }
+
+    async delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            const projectId = parseInt(req.params.projectId, 10);
+
+            await ProjectRepository.delete(projectId);
+
+            res.locals = {
+                status: 200,
+                message: 'Project deleted ',
+            };
+
+            return next();
         } catch (error) {
             return next(error);
         }
