@@ -13,5 +13,4 @@ managerRouter.route('/')
     ManagerController.readAll,
   );
 
-
 export default managerRouter;

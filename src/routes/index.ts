@@ -1,4 +1,3 @@
-// src/routes/index.ts
 import { Router } from 'express';
 import squadRouter from './SquadRoutes';
 import projectRouter from './ProjectRoutes';
