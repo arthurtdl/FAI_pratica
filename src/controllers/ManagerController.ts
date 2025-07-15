@@ -31,6 +31,30 @@ class ManagerController {
         }
     }
 
+    async readOne(req: Request, res: Response, next: NextFunction) {
+            try {
+              const { id } = req.params;
+        
+              const manager = await ManagerRepository.findById(parseInt(id, 10));
+        
+              if (!manager) {
+                return next({
+                  status: 404,
+                  message: 'Manager not found',
+                });
+              }
+        
+              res.locals = {
+                status: 200,
+                data: manager,
+              };
+        
+              return next();
+            } catch (error) {
+              return next(error);
+            }
+          }
+
     async readAll(_req: Request, res: Response, next: NextFunction) {
             try {
                 const allManagers = await ManagerRepository.findAll();

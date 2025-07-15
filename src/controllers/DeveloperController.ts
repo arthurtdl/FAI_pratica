@@ -45,6 +45,30 @@ class DeveloperController {
     }
   }
 
+  async readOne(req: Request, res: Response, next: NextFunction) {
+          try {
+            const { id } = req.params;
+      
+            const developer = await DeveloperRepository.findById(parseInt(id, 10));
+      
+            if (!developer) {
+              return next({
+                status: 404,
+                message: 'Squad not found',
+              });
+            }
+      
+            res.locals = {
+              status: 200,
+              data: developer,
+            };
+      
+            return next();
+          } catch (error) {
+            return next(error);
+          }
+        }
+
   async readAll(_req: Request, res: Response, next: NextFunction) {
           try {
               const allDevelopers = await DeveloperRepository.findAll();

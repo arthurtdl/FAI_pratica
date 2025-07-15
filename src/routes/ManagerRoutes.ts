@@ -13,4 +13,20 @@ managerRouter.route('/')
     ManagerController.readAll,
   );
 
+managerRouter.route('/:id')
+  .get(
+    ManagerController.readOne,
+  );
+
+managerRouter.route('/:id')
+  .patch(
+    ManagerController.update
+  );
+
+managerRouter.route('/:id')
+  .delete(
+    ManagerController.delete
+  );
+
+
 export default managerRouter;

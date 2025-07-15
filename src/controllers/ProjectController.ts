@@ -31,6 +31,30 @@ class ProjectController {
         }
     }
 
+    async readOne(req: Request, res: Response, next: NextFunction) {
+            try {
+              const { id } = req.params;
+        
+              const project = await ProjectRepository.findById(parseInt(id, 10));
+        
+              if (!project) {
+                return next({
+                  status: 404,
+                  message: 'Project not found',
+                });
+              }
+        
+              res.locals = {
+                status: 200,
+                data: project,
+              };
+        
+              return next();
+            } catch (error) {
+              return next(error);
+            }
+          }
+
     async readAll(_req: Request, res: Response, next: NextFunction) {
         try {
             const allProjects = await ProjectRepository.findAll();

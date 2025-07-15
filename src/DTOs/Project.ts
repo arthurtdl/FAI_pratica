@@ -15,13 +15,13 @@ export const createProjectSchema = z.object({
 
     startDate: z
     .date({
-      invalid_type_error: 'A startDate deve ser uma string',
+      invalid_type_error: 'A startDate deve ser um DateTime',
       required_error: 'A startDate é obrigatório',
     }),
 
     endDate: z
     .date({
-      invalid_type_error: 'A endDate deve ser uma string',
+      invalid_type_error: 'A endDate deve ser uma DateTime',
       required_error: 'A endDate é obrigatório',
     }),
 

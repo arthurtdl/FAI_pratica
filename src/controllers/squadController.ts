@@ -52,6 +52,30 @@ async create(req: Request, res: Response, next: NextFunction) {
         }
     }
 
+    async readOne(req: Request, res: Response, next: NextFunction) {
+        try {
+          const { id } = req.params;
+    
+          const squad = await SquadRepository.findById(parseInt(id, 10));
+    
+          if (!squad) {
+            return next({
+              status: 404,
+              message: 'Squad not found',
+            });
+          }
+    
+          res.locals = {
+            status: 200,
+            data: squad,
+          };
+    
+          return next();
+        } catch (error) {
+          return next(error);
+        }
+      }
+
     async readAll(_req: Request, res: Response, next: NextFunction) {
         try {
             const allSquads = await SquadRepository.findAll();
