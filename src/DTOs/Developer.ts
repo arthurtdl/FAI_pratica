@@ -1,14 +1,14 @@
 import z from "zod";
 
 export const createDeveloperSchema = z.object({
-        email: z
-        .string({
+        email: z.
+        string({
           invalid_type_error: 'O email deve ser uma string',
           required_error: 'O email é obrigatório',
         }),
     
-        password: z
-        .string({
+        password: z.
+        string({
           invalid_type_error: 'O password deve ser uma string',
           required_error: 'O password é obrigatório',
         }),
@@ -26,7 +26,7 @@ export const createDeveloperSchema = z.object({
         }),
     
         birthDate: z.
-        string({
+        coerce.date({
             invalid_type_error: 'A birthDate deve ser uma string',
             required_error: 'A birthDate é obrigatória',
         }),
@@ -38,7 +38,7 @@ export const createDeveloperSchema = z.object({
         }),
     
         entryDate: z.
-        string({
+        coerce.date({
             invalid_type_error: 'A entryDate deve ser uma string',
             required_error: 'A entryDate é obrigatória',
         }),

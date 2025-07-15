@@ -26,8 +26,8 @@ export const createManagerSchema = z.object({
     }),
 
     birthDate: z.
-    string({
-        invalid_type_error: 'A birthDate deve ser uma string',
+    coerce.date({
+        invalid_type_error: 'A birthDate deve ser um DateTime',
         required_error: 'A birthDate é obrigatória',
     }),
 
@@ -38,14 +38,14 @@ export const createManagerSchema = z.object({
     }),
 
     entryDate: z.
-    string({
-        invalid_type_error: 'A entryDate deve ser uma string',
+    coerce.date({
+        invalid_type_error: 'A entryDate deve ser um DateTime',
         required_error: 'A entryDate é obrigatória',
     }),
 
     leadershipEntry: z.
-    string({
-        invalid_type_error: 'A leadershipEntry deve ser uma string',
+    coerce.date({
+        invalid_type_error: 'A leadershipEntry deve ser um DateTime',
         required_error: 'A leadershipEntry é obrigatória',
     })
 });
